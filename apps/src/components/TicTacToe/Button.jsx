@@ -8,7 +8,7 @@ function Button(props)
             return(
                 <div key={index} type="button" onClick={() => props.clicked(index,props.rowId)} className="square">
                     <span className="marks">{field}</span>
-                </div>
+                </div>               
             )
         })}
     </div>
