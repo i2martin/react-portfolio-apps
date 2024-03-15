@@ -1,4 +1,6 @@
-
+#root{
+  min-height: 100vh;
+}
 body{
   background-image: linear-gradient(#F0F8FF, #E6E6FA);
   display: flex;
@@ -90,8 +92,6 @@ body{
   position: relative;
   visibility: visible;
 
-  width: 100%;
-  height: 100%;
   padding: 3rem 1rem;
   opacity: 1;
   transition: opacity 0.5s;
@@ -100,10 +100,10 @@ body{
   margin-top: -90px;
 }
 .ag-canvas_svg {
+  width: 70vw !important;
+  height: 70vh !important;
   display: block;
-  width: 100%;
   height: auto;
-  max-height: 100%;
   margin-left: 1rem;
 }
 .ag-canvas_svg path {
