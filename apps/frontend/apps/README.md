@@ -1,15 +1,10 @@
-Backend is based on Express.
-In the project directory (backend/src), you can run:
+# Getting Started with Create React App
 
-### `npx nodemon index.ts`
-
-Open [http://localhost:5000](http://localhost:3000) to view it in your browser.
-
-Front-end was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
-In the project directory (frontend/apps), you can run:
+In the project directory, you can run:
 
 ### `npm start`
 

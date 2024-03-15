@@ -30,23 +30,26 @@ function TicTacToe()
                 setOccupiedFields(copyFields);
                 //switch marks on update
                 setCurrentlyPlaying(currentlyPlaying === "X" ? "O" : "X");
+                setPlayerTurn(playerTurn === 1 ? 0 : 1);
             }
 
             else
             {         
-                
+                console.log(123);
                 var newFields = defaultFields;
                 if (playerTurn === 1)
                 {
                     newScore = playerOneScore + 1;
-                    if (numberOfPlayedFields !== 9) {setPlayerOneScore(newScore);}
-                    setPlayerTurn(2);
+                    if (numberOfPlayedFields !== 9) {
+                        console.log(currentlyPlaying);
+                        setPlayerOneScore(newScore);
+                    }
                 }
                 else
                 {
                     newScore = playerTwoScore + 1;
                     if (numberOfPlayedFields !== 9) {setPlayerTwoScore(newScore);}
-                    setPlayerTurn(1);
+                    
                 }
                 setOccupiedFields(newFields);
                 setCurrentlyPlaying('X');
