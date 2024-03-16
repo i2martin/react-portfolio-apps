@@ -42,7 +42,7 @@ function TicTacToe()
                     newScore = playerOneScore + 1;
                     if (numberOfPlayedFields !== 9) {
                         console.log(currentlyPlaying);
-                        setPlayerOneScore(newScore);
+                        setPlayerOneScore(newScore);                       
                     }
                 }
                 else
@@ -99,25 +99,27 @@ function TicTacToe()
     }
 
     return (
-        <div className="ttt-container">
-            <h1 className="ttt-title">Tic Tac Toe</h1>
-            <div className="scores">
-                <div className="score">
-                    <h2 ref={player1} onKeyDown={handleNameLength} contentEditable="plaintext-only">Player 1: </h2> 
-                    <h2>{playerOneScore}</h2>
+        <div className="ttt">
+            <div className="ttt-container">
+                <h1 className="ttt-title">Tic Tac Toe</h1>
+                <div className="scores">
+                    <div className="score">
+                        <h2 ref={player1} onKeyDown={handleNameLength} contentEditable="plaintext-only">Player 1: </h2> 
+                        <h2>{playerOneScore}</h2>
+                    </div>
+                    <div className="score">
+                    <h2 ref={player2} onKeyDown={handleNameLength} contentEditable="plaintext-only">Player 2: </h2>
+                    <h2>{playerTwoScore}</h2>
+                    </div>
                 </div>
-                <div className="score">
-                   <h2 ref={player2} onKeyDown={handleNameLength} contentEditable="plaintext-only">Player 2: </h2>
-                   <h2>{playerTwoScore}</h2>
-                </div>
-            </div>
-            {[...occupiedFields].map((array, index)=>
-            {
-                return(
-                <Button row={array} rowId={index} clicked={placeMark} currentSymbol={currentlyPlaying} key={index++}/>
-                )
-            })}
-        </div>     
+                {[...occupiedFields].map((array, index)=>
+                {
+                    return(
+                    <Button row={array} rowId={index} clicked={placeMark} currentSymbol={currentlyPlaying} key={index++}/>
+                    )
+                })}
+            </div>    
+        </div>   
     );
 }
 

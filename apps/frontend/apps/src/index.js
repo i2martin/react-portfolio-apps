@@ -5,22 +5,46 @@ import App from './App';
 import ErrorPage from './components/ErrorPage';
 import TravelTracker from './components/TravelTracker/TravelTracker';
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import TicTacToe from './components/TicTacToe/TicTacToe';
+import NavigationBar from './components/NavigationBar';
 
 const router = createBrowserRouter([
   {
+    
     path: "/",
-    element: <App />,
-    errorElement: <ErrorPage />,
-  },
+    element: (    
+      <>
+        <NavigationBar />
+        <App />      
+      </>
+    ),
+    errorElement: <ErrorPage />
+    },
     {
-      path: "traveltracker",
-    element: <TravelTracker />,
+      path: "tic-tac-toe",
+      element: (
+        <>
+          <NavigationBar />,
+          <TicTacToe />
+        </>
+      ),
+      errorElement: <ErrorPage />
+    },
+    {
+      path: "travel-tracker",
+      element:(
+        <>
+          <NavigationBar />,
+          <TravelTracker />
+        </>
+      ),
+      errorElement: <ErrorPage /> 
     },
 ]);
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  <React.StrictMode>   
     <RouterProvider router={router} />
   </React.StrictMode>
 );
