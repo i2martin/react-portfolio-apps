@@ -30,6 +30,19 @@ app.post("/add", async (req, res) => {
 
 });
 
+//allows access to all the visited countries added to the db
+app.get("/get-countries", async (req, res) => {
+  try {
+    const visitedCountries = await prismaClient.visitedCountries.findMany();
+    console.log(visitedCountries);
+    return res.status(201).json(visitedCountries);
+   
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Oops, something went wrong." });
+  }
+});
+
 app.listen(5000, () => {
   console.log("Server running on localhost:5000");
 })

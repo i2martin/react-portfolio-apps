@@ -7,7 +7,7 @@ import TravelTracker from './components/TravelTracker/TravelTracker';
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import TicTacToe from './components/TicTacToe/TicTacToe';
 import NavigationBar from './components/NavigationBar';
-
+import GetCountries from './components/TravelTracker/scripts/GetCountries';
 const router = createBrowserRouter([
   {
     
@@ -35,7 +35,7 @@ const router = createBrowserRouter([
       element:(
         <>
           <NavigationBar />,
-          <TravelTracker />
+          <TravelTracker data={GetCountries()}/>
         </>
       ),
       errorElement: <ErrorPage /> 

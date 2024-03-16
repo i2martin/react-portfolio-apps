@@ -3,7 +3,6 @@ import Button from "./Button";
 
 const defaultFields = [['','',''],['','',''],['','','']];
 
-
 function TicTacToe()
 {
     var player1 = useRef("Player 1");
@@ -14,6 +13,8 @@ function TicTacToe()
     var [playerTwoScore, setPlayerTwoScore] = React.useState(0);
     var [playerTurn, setPlayerTurn] = React.useState(1);
     var [numberOfPlayedFields, setNumberOfPlayedFields] = React.useState(1);
+    //this state will be used to track rounds and switch who plays X.
+    var [currentRound, setCurrentRound] = React.useState(1);
     function placeMark(col,row)
     {
         var newScore = 0;
@@ -24,7 +25,6 @@ function TicTacToe()
         if (copyFields[row][col] !== "X" && copyFields[row][col] !== "O" )       
         {
             copyFields[row][col] = currentlyPlaying;
-
             if (checkWinner(copyFields) === false && numberOfPlayedFields !== 9)
             {
                 setOccupiedFields(copyFields);
@@ -32,29 +32,45 @@ function TicTacToe()
                 setCurrentlyPlaying(currentlyPlaying === "X" ? "O" : "X");
                 setPlayerTurn(playerTurn === 1 ? 0 : 1);
             }
-
             else
-            {         
-                console.log(123);
+            {       
+                console.log(currentRound);  
                 var newFields = defaultFields;
                 if (playerTurn === 1)
-                {
-                    newScore = playerOneScore + 1;
+                {                   
                     if (numberOfPlayedFields !== 9) {
-                        console.log(currentlyPlaying);
-                        setPlayerOneScore(newScore);                       
+                        if ( currentRound % 2 === 1){
+                            newScore = playerOneScore + 1;
+                            setPlayerOneScore(newScore);
+                        }
+                        else{
+                            newScore = playerTwoScore + 1;
+                            setPlayerTwoScore(newScore); 
+                        }                                     
                     }
                 }
                 else
                 {
                     newScore = playerTwoScore + 1;
-                    if (numberOfPlayedFields !== 9) {setPlayerTwoScore(newScore);}
-                    
+                    if (numberOfPlayedFields !== 9) {
+                        if (currentRound % 2 === 0)
+                        {
+                            newScore = playerOneScore + 1;
+                            setPlayerOneScore(newScore);
+                        }
+                        else
+                        {
+                            newScore = playerTwoScore + 1;
+                            setPlayerTwoScore(newScore);
+                        }
+                    }                 
                 }
+                var newRound = currentRound + 1;
+                setCurrentRound(newRound);  
                 setOccupiedFields(newFields);
                 setCurrentlyPlaying('X');
                 setNumberOfPlayedFields(1);    
-                setPlayerTurn(1)            
+                setPlayerTurn(1);            
             }
         }
     }
@@ -82,10 +98,10 @@ function TicTacToe()
         else if (fields[0][2] === fields[1][1] && fields[1][1] === fields[2][0] && fields[0][2] !== '')
         {
             return true;
-        }
-            
+        }          
         return false;
     }
+
     const handleNameLength = (e) =>
     {
         //Update this as now name can be left blank
@@ -95,8 +111,7 @@ function TicTacToe()
             {
                 e.preventDefault();
             }
-        }
-        
+        }       
     }
 
     return (
@@ -105,12 +120,12 @@ function TicTacToe()
                 <h1 className="ttt-title">Tic Tac Toe</h1>
                 <div className="scores">
                     <div className="score">
-                        <h2 ref={player1} onKeyDown={handleNameLength} contentEditable="plaintext-only">Player 1: </h2> 
-                        <h2>{playerOneScore}</h2>
+                        <h2 ref={player1} onKeyDown={handleNameLength} contentEditable="plaintext-only">Player 1</h2> 
+                        <h2>{" : " + playerOneScore}</h2>
                     </div>
                     <div className="score">
-                    <h2 ref={player2} onKeyDown={handleNameLength} contentEditable="plaintext-only">Player 2: </h2>
-                    <h2>{playerTwoScore}</h2>
+                    <h2 ref={player2} onKeyDown={handleNameLength} contentEditable="plaintext-only">Player 2</h2>
+                    <h2>{" : " + playerTwoScore}</h2>
                     </div>
                 </div>
                 {[...occupiedFields].map((array, index)=>
