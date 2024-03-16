@@ -53,7 +53,8 @@ function TicTacToe()
                 }
                 setOccupiedFields(newFields);
                 setCurrentlyPlaying('X');
-                setNumberOfPlayedFields(1);
+                setNumberOfPlayedFields(1);    
+                setPlayerTurn(1)            
             }
         }
     }
